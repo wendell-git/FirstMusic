@@ -98,7 +98,7 @@ public class MainActivity extends Activity {
         nextBtn = (Button) findViewById(R.id.next_music);  
         musicTitle = (TextView) findViewById(R.id.musicTitle);  
         musicCurrent = (TextView) findViewById(R.id.musicCurrent);  
-//        musicPlaying = (Button) findViewById(R.id.playing);  
+        
 	}
 	 /** 
      * 给每一个按钮设置监听器 
