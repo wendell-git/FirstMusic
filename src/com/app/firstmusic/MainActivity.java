@@ -26,7 +26,10 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.data.AlbumInfo;
 import com.app.data.AppConstant;
+import com.app.data.ArtistInfo;
+import com.app.data.FolderInfo;
 import com.app.data.Mp3Info;
 import com.app.service.PlayerService;
 import com.app.tool.MediaUtil;
@@ -37,6 +40,9 @@ public class MainActivity extends Activity {
     private SimpleAdapter mAdapter;
     private ListView mMusiclist;
     private List<Mp3Info> mp3Infos;
+	private List<AlbumInfo> mAlbumList;  
+	private List<ArtistInfo> mArtist;
+	private List<FolderInfo> mFolderList;
     private HomeReceiver homeReceiver;  //自定义的广播接收器 
 	private Button previousBtn;
 	private Button repeatBtn;
@@ -66,13 +72,17 @@ public class MainActivity extends Activity {
     private boolean isNoneShuffle = true; // 顺序播放  
     private boolean isShuffle = false; // 随机播放  
     private int currentTime;  
-    private int duration;  
+    private int duration;
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-        mp3Infos = getMp3Infos();
+        mp3Infos = MediaUtil.getMp3Infos(this);
+        mAlbumList = MediaUtil.queryAlbums(this);
+        mArtist = MediaUtil.queryArtist(this);
+        mFolderList = MediaUtil.queryFolder(this);
+        
         setListAdpter(mp3Infos);
         
         setViewOnclickListener();
